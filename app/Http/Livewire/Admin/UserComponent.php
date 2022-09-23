@@ -70,5 +70,3 @@ class UserComponent extends Component
         ->paginate($this->perPage)])->layout('layouts.admin');
     }
 }
-    
-

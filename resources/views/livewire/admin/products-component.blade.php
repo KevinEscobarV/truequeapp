@@ -169,23 +169,16 @@
                                     <td class="px-6 py-4 text-sm text-gray-500">
                                         {{ $product->provider->name }} {{ $product->provider->last_name }}
                                     </td>
-
-
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <a class="pr-2 hover:text-blue-600 cursor-pointer"
                                             wire:click="edit('{{ $product->id }}')">Editar</a>
                                     </td>
-
                                     <td class="px-6 py-4 whitespace-nowrap text-center text-sm">
                                         <a class="pl-2 hover:text-red-600 cursor-pointer text-md"
                                             wire:click="$emit('deleteProduct', '{{ $product->id }}')">Eliminar</a>
                                     </td>
-
                                 </tr>
-
                             @endforeach
-
-
                         </tbody>
                     </table>
                     @if ($products->haspages())
