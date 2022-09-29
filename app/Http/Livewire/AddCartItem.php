@@ -30,6 +30,7 @@ class AddCartItem extends Component
         ]);
 
         $this->emitTo('cart-component', 'render');
+        $this->emitTo('sub-total-component', 'render');
     }
 
 

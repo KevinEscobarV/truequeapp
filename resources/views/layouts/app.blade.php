@@ -10,10 +10,11 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+    <!-- Flex Slider -->
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}" type="text/css" media="screen" />
+
     @livewireStyles
 
     <!-- Scripts -->
@@ -43,7 +44,7 @@
         @livewire('navigation-menu')
         <div class="flex flex-col flex-1 min-h-screen overflow-x-hidden overflow-y-auto">
             @if (isset($header))
-                <header class="bg-gray-800 shadow">
+                <header class="bg-gray-500 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -56,8 +57,10 @@
         </div>
     </div>
 
+    <!-- Flex Slider -->
+    <script defer src="{{ asset('js/jquery.flexslider.js') }}"></script>
+    @stack('script')
     @stack('modals')
-
     @livewireScripts
 </body>
 

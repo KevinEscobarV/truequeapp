@@ -11,9 +11,14 @@ class Product extends Model
 
     protected $guarded =['id','created_at','updated_at'];
 
-    //Relación Pertenece A:
+    //Relación Pertenece a un proveedor:
     public function provider(){
         return $this->belongsTo(Provider::class);
+    }
+
+    //Relación Pertenece a una categoria:
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
     //Relación Tiene Muchas Imagenes:

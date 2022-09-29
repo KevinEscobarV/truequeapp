@@ -36,10 +36,34 @@
                       
                     </div>
                     
-                    <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{$product->images->first()->url}}">
+                    {{-- <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{{Storage::url($product->images->first()->url)}}"> --}}
+                    <div class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded">
+                      <div class="flexslider">
+                          <ul class="slides">
+                              @foreach ($product->images as $image)
+                                  <li data-thumb="{{ Storage::url($image->url) }}">
+                                      <img src="{{ Storage::url($image->url) }}" />
+                                  </li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  </div>
                   </div>
                 </div>
               </section>
         </div>
     </div>
+
+    @push('script')
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: "thumbnails"
+                });
+            });
+        </script>
+    @endpush
 </x-app-layout>

@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('products');
         Storage::makeDirectory('products');
+        Storage::deleteDirectory('categories');
+        Storage::makeDirectory('categories');
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
@@ -20,9 +22,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(50)->create();
 
         \App\Models\Provider::factory(50)->create();
-
+        $this->call(CategorySeeder::class);
         $this->call(ImageProductSeeder::class);
-
-
     }
 }

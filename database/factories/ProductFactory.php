@@ -28,6 +28,7 @@ class ProductFactory extends Factory
             'stock_in' => $this->faker->numberBetween(0, 100),
             'stock_out' => $this->faker->numberBetween(0, 100),
             'provider_id' => Provider::all()->random()->id,
+            'category_id' => \App\Models\Category::all()->random()->id,
         ];
     }
 }

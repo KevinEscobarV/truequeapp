@@ -12,6 +12,7 @@ class CartComponent extends Component
     public function remove($rowId)
     {
         Cart::remove($rowId);
+        $this->emitTo('sub-total-component', 'render');
         $this->emit('render');
     }
 
