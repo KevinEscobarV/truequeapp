@@ -205,7 +205,7 @@
 
                 Swal.fire({
                     title: '¿Estas Seguro?',
-                    text: "¡No podrás revertir esto!",
+                    text: "¡No podrás revertir esto, todos los productos que pertenezcan a esta categoria seran eliminados!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
