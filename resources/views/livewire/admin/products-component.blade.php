@@ -29,7 +29,8 @@
                 <x-jet-label>
                     Slug
                 </x-jet-label>
-                <x-jet-input type="text" wire:model="createForm.slug" placeholder="Se llena automaticamente" class="w-full" disabled />
+                <x-jet-input type="text" wire:model="createForm.slug" placeholder="Se llena automaticamente"
+                    class="w-full bg-gray-100" disabled />
                 <x-jet-input-error for="createForm.slug" />
             </div>
 
@@ -53,7 +54,8 @@
                 <x-jet-label>
                     Porcentaje de Precio de Salida
                 </x-jet-label>
-                <x-jet-input type="number" wire:model="percent" placeholder="Escribir unicamente el numero" class="w-full bg-orange-100" />
+                <x-jet-input type="number" wire:model="percent" placeholder="Escribir unicamente el numero"
+                    class="w-full bg-orange-100" />
             </div>
 
             <div class="col-span-6 sm:col-span-2">
@@ -68,7 +70,7 @@
                 <x-jet-label>
                     Precio Salida
                 </x-jet-label>
-                <x-jet-input type="number" wire:model="createForm.price_out" class="w-full" disabled />
+                <x-jet-input type="number" wire:model="createForm.price_out" placeholder="Segun el precio de entrada" class="w-full bg-gray-100" disabled />
                 <x-jet-input-error for="createForm.price_out" />
             </div>
 
@@ -258,7 +260,8 @@
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-500">
                                         {{ $product->name }}
-                                        <div class="text-sm text-blueGray-400">Categoria: {{ $product->category->name }}
+                                        <div class="text-sm text-blueGray-400">Categoria:
+                                            {{ $product->category->name }}
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -327,84 +330,146 @@
         </div>
     </div>
 
-    <x-jet-dialog-modal wire:model="editForm.open">
+    <x-jet-dialog-modal wire:model="editForm.open" maxWidth="5xl">
         <x-slot name="title">
             Editar
         </x-slot>
 
         <x-slot name="content">
+            <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-3">
+                    <x-jet-label>
+                        Nombre
+                    </x-jet-label>
+                    <x-jet-input type="text" wire:model="editForm.name" class="w-full" />
+                    <x-jet-input-error for="editForm.name" />
+                </div>
 
-            <div class="mb-6">
-                <x-jet-label>
-                    Nombre
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="editForm.name" class="w-full" />
-                <x-jet-input-error for="editForm.name" />
+                <div class="col-span-6 sm:col-span-3">
+                    <x-jet-label>
+                        Slug
+                    </x-jet-label>
+                    <x-jet-input type="text" wire:model="editForm.slug" placeholder="Se llena automaticamente"
+                        class="w-full" disabled />
+                    <x-jet-input-error for="editForm.slug" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                    <x-jet-label>
+                        Material
+                    </x-jet-label>
+                    <x-jet-input type="text" wire:model="editForm.material" class="w-full" />
+                    <x-jet-input-error for="editForm.material" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                    <x-jet-label>
+                        Tamaño
+                    </x-jet-label>
+                    <x-jet-input type="text" wire:model="editForm.size" class="w-full" />
+                    <x-jet-input-error for="editForm.size" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-2">
+                    <x-jet-label>
+                        Porcentaje de Precio de Salida
+                    </x-jet-label>
+                    <x-jet-input type="number" wire:model="percent" placeholder="Escribir unicamente el numero"
+                        class="w-full bg-orange-100" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-2">
+                    <x-jet-label>
+                        Precio Entrada
+                    </x-jet-label>
+                    <x-jet-input type="number" wire:model="editForm.price_in" class="w-full" />
+                    <x-jet-input-error for="editForm.price_in" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-2">
+                    <x-jet-label>
+                        Precio Salida
+                    </x-jet-label>
+                    <x-jet-input type="number" wire:model="editForm.price_out" class="w-full" disabled />
+                    <x-jet-input-error for="editForm.price_out" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                    <x-jet-label>
+                        Stock Entrada
+                    </x-jet-label>
+                    <x-jet-input type="text" wire:model="editForm.stock_in" class="w-full" />
+                    <x-jet-input-error for="editForm.stock_in" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                    <x-jet-label>
+                        Stock Salida
+                    </x-jet-label>
+                    <x-jet-input type="text" wire:model="editForm.stock_out" class="w-full" />
+                    <x-jet-input-error for="editForm.stock_out" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-6">
+                    <x-jet-label>
+                        Descripción
+                    </x-jet-label>
+                    <textarea wire:model="editForm.description" class="w-full h-40 rounded-md" cols="30" rows="10"></textarea>
+                    <x-jet-input-error for="editForm.description" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+
+                    <x-jet-label>
+                        Proveedor
+                    </x-jet-label>
+
+                    <select wire:model="editForm.provider_id"
+                        class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+                        <option value="" selected disabled>Seleccione un Proveedor</option>
+
+                        @foreach ($providers as $provider)
+                            <option value="{{ $provider->id }}">{{ $provider->name }} {{ $provider->last_name }}
+                            </option>
+                        @endforeach
+
+                    </select>
+
+                    <x-jet-input-error for="editForm.provider_id" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+
+                    <x-jet-label>
+                        Categoria
+                    </x-jet-label>
+
+                    <select wire:model="editForm.provider_id"
+                        class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+                        <option value="" selected disabled>Seleccione una Categoria</option>
+
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+
+                    </select>
+
+                    <x-jet-input-error for="editForm.provider_id" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+
+                    <x-jet-label>
+                        Imagenes
+                    </x-jet-label>
+
+                    <input type="file" wire:model="images" class="w-full" multiple>
+
+                    <x-jet-input-error for="images.*" />
+                </div>
             </div>
-
-            <div class="mb-6">
-                <x-jet-label>
-                    Material
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="editForm.material" class="w-full" />
-                <x-jet-input-error for="editForm.material" />
-            </div>
-
-            <div class="mb-6">
-                <x-jet-label>
-                    Tamaño
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="editForm.size" class="w-full" />
-                <x-jet-input-error for="editForm.size" />
-            </div>
-
-            <div class="mb-6">
-                <x-jet-label>
-                    Precio
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="editForm.price" class="w-full" />
-                <x-jet-input-error for="editForm.price" />
-            </div>
-
-            <div class="mb-6">
-                <x-jet-label>
-                    Descripción
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="editForm.description" class="w-full" />
-                <x-jet-input-error for="editForm.description" />
-            </div>
-
-            <div class="mb-6">
-
-                <x-jet-label>
-                    Proveedor
-                </x-jet-label>
-
-                <select wire:model="editForm.provider_id"
-                    class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
-
-                    <option value="" selected disabled>Seleccione un Proveedor</option>
-
-                    @foreach ($providers as $provider)
-                        <option value="{{ $provider->id }}">{{ $provider->name }}</option>
-                    @endforeach
-
-                </select>
-
-                <x-jet-input-error for="editForm.provider_id" />
-            </div>
-
-            <div class="mb-6">
-
-                <x-jet-label>
-                    Imagenes
-                </x-jet-label>
-
-                <input type="file" wire:model="edit_images" class="w-full" multiple>
-
-                <x-jet-input-error for="edit_images.*" />
-            </div>
-
         </x-slot>
 
         <x-slot name="footer">

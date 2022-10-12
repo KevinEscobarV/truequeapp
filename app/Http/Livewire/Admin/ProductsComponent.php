@@ -53,7 +53,7 @@ class ProductsComponent extends Component
 
     public $rules=[
         'createForm.name' => 'required|string|max:255',
-        'createForm.slug' => 'required',
+        'createForm.slug' => 'required|string|max:255|unique:products',
         'createForm.price_in' => 'required',
         'createForm.price_out' => 'required',
         'createForm.description' => 'required',
@@ -126,32 +126,46 @@ class ProductsComponent extends Component
         $product = $this->product;
         $this->editForm['open'] = true;
         $this->editForm['name'] = $product->name;
-        $this->editForm['price'] = $product->price;
+        $this->editForm['slug'] = $product->slug;
+        $this->editForm['price_in'] = $product->price_in;
+        $this->editForm['price_out'] = $product->price_out;
         $this->editForm['description'] = $product->description;
         $this->editForm['material'] = $product->material;
         $this->editForm['size'] = $product->size;
+        $this->editForm['stock_in'] = $product->stock_in;
+        $this->editForm['stock_out'] = $product->stock_out;
         $this->editForm['provider_id'] = $product->provider_id;
-        
+        $this->editForm['category_id'] = $product->category_id;
     }
 
     public function update()
     {
        $this->validate([
         'editForm.name' => 'required',
-        'editForm.price' => 'required',
+        'editForm.slug' => 'required',
+        'editForm.price_in' => 'required',
+        'editForm.price_out' => 'required',
         'editForm.description' => 'required',
         'editForm.material' => 'required',
         'editForm.size' => 'required',
+        'editForm.stock_in' => 'required',
+        'editForm.stock_out' => 'required',
         'editForm.provider_id' => 'required',
+        'editForm.category_id' => 'required',
        ]); 
 
        $this->product->update([
         'name' => $this->editForm['name'],
-        'price' => $this->editForm['price'],
+        'slug' => $this->editForm['slug'],
+        'price_in' => $this->editForm['price_in'],
+        'price_out' => $this->editForm['price_out'],
         'description' => $this->editForm['description'],
         'material' => $this->editForm['material'],
         'size' => $this->editForm['size'],
+        'stock_in' => $this->editForm['stock_in'],
+        'stock_out' => $this->editForm['stock_out'],
         'provider_id' => $this->editForm['provider_id'],
+        'category_id' => $this->editForm['category_id'],
        ]);
 
        $this->reset('editForm');
@@ -161,10 +175,11 @@ class ProductsComponent extends Component
 
     public function delete($id)
     {
-        // $product = Product::find($id);
-        // $product->delete();
-        Product::destroy($id);
-        // $this->getProducts();
+        $product = Product::find($id);
+        // Eliminar imagenes
+        $product->images()->delete();
+
+        $product->delete();
     }
 
     public function render()
