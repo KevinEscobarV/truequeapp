@@ -124,7 +124,7 @@
                     Categoria
                 </x-jet-label>
 
-                <select wire:model="createForm.provider_id"
+                <select wire:model="createForm.category_id"
                     class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
                     <option value="" selected disabled>Seleccione una Categoria</option>
@@ -135,7 +135,7 @@
 
                 </select>
 
-                <x-jet-input-error for="createForm.provider_id" />
+                <x-jet-input-error for="createForm.category_id" />
             </div>
 
             <div class="col-span-6 sm:col-span-3">
@@ -337,6 +337,28 @@
 
         <x-slot name="content">
             <div class="grid grid-cols-6 gap-6">
+
+                @if ($current_images)
+                    <div class="col-span-6 sm:col-span-6">
+                        <div class="flex">
+                            @foreach ($current_images as $item)
+                            <li class="flex px-2 py-1">
+                                <article class="flex-1 relative">
+                                    <img class="h-24 w-24 rounded-md object-cover" src="{{ Storage::url($item->url) }}" alt="">              
+                                    <a class="ml-6 cursor-pointer absolute right-1 top-1 bg-orange-600 rounded-md px-2 py-1" 
+                                        wire:click="deleteImage('{{$item->id}}')"
+                                        wire:loading.class="text-red-600 opacity-25"
+                                        wire:target="deleteImage('{{$item->id}}')">
+                                        X
+                                    </a>
+                                </article>
+                            </li>
+                        @endforeach
+                        </div>
+                    </div> 
+                    
+                @endif
+
                 <div class="col-span-6 sm:col-span-3">
                     <x-jet-label>
                         Nombre
@@ -350,7 +372,7 @@
                         Slug
                     </x-jet-label>
                     <x-jet-input type="text" wire:model="editForm.slug" placeholder="Se llena automaticamente"
-                        class="w-full" disabled />
+                        class="w-full bg-gray-100" disabled />
                     <x-jet-input-error for="editForm.slug" />
                 </div>
 
@@ -390,7 +412,7 @@
                     <x-jet-label>
                         Precio Salida
                     </x-jet-label>
-                    <x-jet-input type="number" wire:model="editForm.price_out" class="w-full" disabled />
+                    <x-jet-input type="number" wire:model="editForm.price_out" class="w-full bg-gray-100" disabled />
                     <x-jet-input-error for="editForm.price_out" />
                 </div>
 
@@ -445,7 +467,7 @@
                         Categoria
                     </x-jet-label>
 
-                    <select wire:model="editForm.provider_id"
+                    <select wire:model="editForm.category_id"
                         class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
 
                         <option value="" selected disabled>Seleccione una Categoria</option>
@@ -456,7 +478,7 @@
 
                     </select>
 
-                    <x-jet-input-error for="editForm.provider_id" />
+                    <x-jet-input-error for="editForm.category_id" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -465,9 +487,9 @@
                         Imagenes
                     </x-jet-label>
 
-                    <input type="file" wire:model="images" class="w-full" multiple>
+                    <input type="file" wire:model="edit_images" class="w-full" multiple>
 
-                    <x-jet-input-error for="images.*" />
+                    <x-jet-input-error for="edit_images.*" />
                 </div>
             </div>
         </x-slot>

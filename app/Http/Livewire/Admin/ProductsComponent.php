@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\ImageProduct;
 use App\Models\Product;
 use App\Models\Provider;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
@@ -15,6 +16,8 @@ class ProductsComponent extends Component
     use WithFileUploads;
 
     public $images = [];
+
+    public $current_images = [];
 
     public $edit_images = [];
 
@@ -53,7 +56,7 @@ class ProductsComponent extends Component
 
     public $rules=[
         'createForm.name' => 'required|string|max:255',
-        'createForm.slug' => 'required|string|max:255|unique:products',
+        'createForm.slug' => 'required|string|max:255|unique:products,slug',
         'createForm.price_in' => 'required',
         'createForm.price_out' => 'required',
         'createForm.description' => 'required',
@@ -73,27 +76,23 @@ class ProductsComponent extends Component
 
     public function updatedCreateFormPriceIn($value)
     {
-        $valor_agregado = ($this->percent*$value)/100;
-        $this->createForm['price_out'] = $value + $valor_agregado;
+        if ($value) {
+            $this->createForm['price_out'] = $value + ($value * $this->percent / 100);
+        }
     }
 
     public function updatedPercent($value)
     {
-        $valor_agregado = ($value*$this->createForm['price_in'])/100;
-        $this->createForm['price_out'] = $this->createForm['price_in'] + $valor_agregado;
+        if ($value) {
+            $this->createForm['price_out'] = $this->createForm['price_in'] + ($this->createForm['price_in'] * $value / 100);
+        }
     }
 
     public function mount()
     {
-        // $this->getProducts();
         $this->getProviders();
         $this->getCategories();
     }
-
-    // public function getProducts()
-    // {
-    //     $this->products = Product::all();
-    // }
 
     public function getProviders()
     {
@@ -117,7 +116,6 @@ class ProductsComponent extends Component
             ]);
         }
         $this->reset('createForm');
-        // $this->getProducts();
     }
 
     public function edit($id)
@@ -136,13 +134,14 @@ class ProductsComponent extends Component
         $this->editForm['stock_out'] = $product->stock_out;
         $this->editForm['provider_id'] = $product->provider_id;
         $this->editForm['category_id'] = $product->category_id;
+        $this->current_images = $product->images;
     }
 
     public function update()
     {
        $this->validate([
         'editForm.name' => 'required',
-        'editForm.slug' => 'required',
+        'editForm.slug' => 'required|unique:products,slug,'. $this->product->id,
         'editForm.price_in' => 'required',
         'editForm.price_out' => 'required',
         'editForm.description' => 'required',
@@ -169,17 +168,21 @@ class ProductsComponent extends Component
        ]);
 
        $this->reset('editForm');
-       
-    //    $this->getProducts();
     }
 
     public function delete($id)
     {
         $product = Product::find($id);
-        // Eliminar imagenes
         $product->images()->delete();
-
         $product->delete();
+    }
+
+    public function deleteImage($id)
+    {
+        $image = ImageProduct::find($id);
+        Storage::delete($image->url);
+        $image->delete();
+        $this->current_images = $this->current_images->fresh();
     }
 
     public function render()
