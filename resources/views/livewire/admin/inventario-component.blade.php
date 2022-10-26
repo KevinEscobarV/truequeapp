@@ -128,7 +128,7 @@
                                         <td class="px-6 py-4">
                                             @if ($product->images->count())
                                                 <img class="h-12 w-12 rounded-md object-cover"
-                                                    src="{{ $product->images->first()->url }}" alt="">
+                                                    src="{{ Storage::url($product->images->first()->url) }}" alt="">
                                             @else
                                                 <img class="h-12 w-12 rounded-md object-cover"
                                                     src="{{ asset('img/default-product.png') }}" alt="">

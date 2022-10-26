@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Livewire\WithPagination;
 
 class ProductsComponent extends Component
 {
     use WithFileUploads;
+    use WithPagination;
 
     public $images = [];
 

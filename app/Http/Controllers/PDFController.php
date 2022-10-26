@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Factura;
-use Illuminate\Http\Request;
+use App\Models\Product;
 use PDF;
+
 class PDFController extends Controller
 {
     public function factura(Factura $factura)
@@ -14,6 +15,12 @@ class PDFController extends Controller
         $suma = 0;
 
         $productos = json_decode($factura->contenido);
+
+        // Agregar descripción de productos
+        foreach ($productos as $producto) {
+            $prod = Product::find($producto->id);
+            $producto->description = $prod->description;
+        }
 
         foreach ($productos as $pruducto) {
             $suma = ($pruducto->price * $pruducto->qty) + $suma;

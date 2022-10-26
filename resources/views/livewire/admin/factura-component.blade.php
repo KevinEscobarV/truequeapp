@@ -11,8 +11,23 @@
         </x-slot>
 
         <x-slot name="form">
+            <div class="col-span-6 sm:col-span-2">
 
-            <div class="col-span-6 sm:col-span-6">
+                <x-jet-label>
+                    Tipo
+                </x-jet-label>
+
+                <select wire:model="createForm.type"
+                    class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="" selected disabled>Seleccione el Tipo</option>
+                    <option value="factura">Factura</option>
+                    <option value="cotizacion">Cotización</option>
+                </select>
+
+                <x-jet-input-error for="createForm.type" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
                 <x-jet-label>
                     Nombre
                 </x-jet-label>
@@ -52,48 +67,17 @@
                 <x-jet-input-error for="createForm.telefono" />
             </div>
 
-            {{-- <div class="col-span-6 sm:col-span-3">
-                <x-jet-label>
-                    Contenido
-                </x-jet-label>
-                <x-jet-input type="tel" wire:model="createForm.contenido" class="w-full" />
-                <x-jet-input-error for="createForm.contenido" />
-            </div> --}}
-
             <div class="col-span-6 sm:col-span-6">
                 <h1>Productos</h1>
             </div>
             
-            {{-- <div class="col-span-6 sm:col-span-1">
-                <x-jet-label>
-                    Cantidad
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="createForm.cantidad" class="w-full" />
-                <x-jet-input-error for="createForm.cantidad" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-4">
-                <x-jet-label>
-                    Descripción
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="createForm.descripcion" class="w-full" />
-                <x-jet-input-error for="createForm.descripcion" />
-            </div>
-
-            <div class="col-span-6 sm:col-span-1">
-                <x-jet-label>
-                    Valor Unitario
-                </x-jet-label>
-                <x-jet-input type="text" wire:model="createForm.unitario" class="w-full" />
-                <x-jet-input-error for="createForm.unitario" />
-            </div> --}}
 
             <div class="col-span-6 sm:col-span-6">
     
                 <div>
                     @livewire('admin.contenido-cart')
                 </div>
-   
+                <x-jet-input-error for="createForm.contenido" />
             </div>
 
 
@@ -117,7 +101,11 @@
                             <tr>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                    No Factura 
+                                    No
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                    TIPO
                                 </th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -148,7 +136,10 @@
 
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        FE{{$factura->id }}
+                                        {{$factura->ref }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 uppercase">
+                                        {{ $factura->type }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {{ $factura->nombre }}

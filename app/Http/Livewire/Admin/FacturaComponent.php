@@ -18,6 +18,7 @@ class FacturaComponent extends Component
         'telefono' => null,
         'nit' => null,
         'contenido' => null,
+        'type' => '',
     ];
 
     public $rules = [
@@ -26,6 +27,8 @@ class FacturaComponent extends Component
         'createForm.email' => 'required',
         'createForm.telefono' => 'required',
         'createForm.nit' => 'required',
+        'createForm.contenido' => 'required',
+        'createForm.type' => 'required',
     ];
 
     public function mount()
@@ -40,15 +43,20 @@ class FacturaComponent extends Component
 
     public function save()
     {
+        $this->createForm['contenido'] = Cart::content();
         $this->validate();
 
+        $ref = $this->createForm['type'] == 'factura' ? 'FE' : 'CO';
+
         Factura::create([
+                'ref' => $ref . time(), 
                 'nombre' => $this->createForm['nombre'],
                 'direccion' => $this->createForm['direccion'],
                 'email' => $this->createForm['email'],
                 'telefono' => $this->createForm['telefono'],
                 'nit' => $this->createForm['nit'],
-                'contenido' => Cart::content(),
+                'contenido' => $this->createForm['contenido'],
+                'type' => $this->createForm['type'],
         ]);
 
         $this->reset('createForm');
