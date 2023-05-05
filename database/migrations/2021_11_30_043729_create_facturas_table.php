@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateFacturasTable extends Migration
 {
     /**
@@ -22,12 +20,10 @@ class CreateFacturasTable extends Migration
             $table->string('direccion');
             $table->string('nit');
             $table->json('contenido')->nullable();
-            $table->enum('type', ['factura', 'cotizacion']);
-            
+            $table->enum('type', ['factura', 'cotizacion']);            
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

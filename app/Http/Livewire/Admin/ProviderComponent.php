@@ -17,6 +17,7 @@ class ProviderComponent extends Component
         'last_name' => null,
         'city' => null,
         'description' => null,
+        'phone'=> null,
     ];
 
     public $editForm=[
@@ -25,6 +26,7 @@ class ProviderComponent extends Component
         'last_name' => null,
         'city' => null,
         'description' => null,
+        'phone'=> null,
     ];
 
     public $rules=[
@@ -32,6 +34,7 @@ class ProviderComponent extends Component
         'createForm.last_name' => 'required',
         'createForm.city' => 'required',
         'createForm.description' => 'required',
+        'createForm.phone' => 'required',
     ];
 
 
@@ -62,6 +65,7 @@ class ProviderComponent extends Component
         $this->editForm['last_name'] = $provider->last_name;
         $this->editForm['city'] = $provider->city;
         $this->editForm['description'] = $provider->description;
+        $this->editForm['phone'] = $provider->phone;
         
     }
 
@@ -72,6 +76,7 @@ class ProviderComponent extends Component
         'editForm.last_name' => 'required',
         'editForm.city' => 'required',
         'editForm.description' => 'required',
+        'editForm.phone' => 'required',
        ]); 
 
        $this->provider->update($this->editForm);

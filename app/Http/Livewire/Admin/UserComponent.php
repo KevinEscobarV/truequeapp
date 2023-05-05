@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use PhpParser\Builder\Use_;
 use Spatie\Permission\Models\Role;
 
 class UserComponent extends Component
@@ -61,6 +62,10 @@ class UserComponent extends Component
         $this->emit('saved');
     }
 
+    public function delete($id){
+        $user = User::find($id);
+        $user->delete();
+    }
 
     public function render()
     {

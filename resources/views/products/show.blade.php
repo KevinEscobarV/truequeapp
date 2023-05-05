@@ -40,11 +40,15 @@
                     <div class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded">
                       <div class="flexslider">
                           <ul class="slides">
-                              @foreach ($product->images as $image)
+                              @forelse ($product->images as $image)
                                   <li data-thumb="{{ Storage::url($image->url) }}">
                                       <img src="{{ Storage::url($image->url) }}" />
                                   </li>
-                              @endforeach
+                              @empty 
+                              <li data-thumb="{{asset('img/producto.jpg')}}">
+                                <img src="{{asset('img/producto.jpg')}}" />
+                            </li>
+                            @endforelse 
                           </ul>
                       </div>
                   </div>

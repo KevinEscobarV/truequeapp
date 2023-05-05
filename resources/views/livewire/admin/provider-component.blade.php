@@ -41,6 +41,14 @@
                 <x-jet-input-error for="createForm.city" />
             </div>
 
+            <div class="col-span-6 sm:col-span-3">
+                <x-jet-label>
+                    Telefono
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="createForm.phone" class="w-full" />
+                <x-jet-input-error for="createForm.phone" />
+            </div>
+
             <div class="col-span-6 sm:col-span-6">
                 <x-jet-label>
                     Descripción
@@ -90,6 +98,11 @@
 
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                    TELEFONO
+                                </th>
+
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                                     DESCRIPCIÓN
                                 </th>
                                 <th></th>
@@ -111,6 +124,9 @@
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-500">
                                         {{ $provider->city }}
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-500">
+                                        {{ $provider->phone }}
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-500">
                                         {{ $provider->description }}
@@ -183,6 +199,14 @@
                 </x-jet-label>
                 <x-jet-input type="text" wire:model="editForm.city" class="w-full" />
                 <x-jet-input-error for="editForm.city" />
+            </div>
+
+            <div class="mb-6">
+                <x-jet-label>
+                    Telefono
+                </x-jet-label>
+                <x-jet-input type="text" wire:model="editForm.phone" class="w-full" />
+                <x-jet-input-error for="editForm.phone" />
             </div>
 
             <div class="mb-6">

@@ -23,7 +23,7 @@ class Product extends Model
 
     //Relación Tiene Muchas Imagenes:
     public function images(){
-        return $this->hasMany(ImageProduct::class);
+        return $this->hasMany(ImageProduct::class); 
     }
 
     //Slug Producto

@@ -40,7 +40,7 @@
             </main>
         </div> --}}
 
-    <div x-data="{ cartOpen: false }" class="min-h-screen bg-gradient-to-r from-blueGray-400">
+    <div x-data="{ cartOpen: false }" class="min-h-screen bg-cover bg-no-repeat bg-fixed" style ="background-image: url({{asset('img/fondo.jpg')}})">
         @livewire('navigation-menu')
         <div class="flex flex-col flex-1 min-h-screen overflow-x-hidden overflow-y-auto">
             @if (isset($header))

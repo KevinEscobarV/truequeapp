@@ -217,7 +217,7 @@
                             <header>
                                 <div class="row">
                                     <div class="col">
-                                        <h1>EL TRUEQUE</h1>
+                                        <img src="{{public_path('img/logo-trueque.png')}}" alt="logo" style="width: 300px;">
                                     </div>
                                     <div class="col company-details">
                                         <h2 class="name">

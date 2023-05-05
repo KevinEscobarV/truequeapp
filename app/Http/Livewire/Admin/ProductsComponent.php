@@ -68,7 +68,7 @@ class ProductsComponent extends Component
         'createForm.stock_out' => 'required',
         'createForm.provider_id' => 'required',
         'createForm.category_id' => 'required',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
 
     public function updatedCreateFormName($value)

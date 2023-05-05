@@ -31,16 +31,16 @@
                 <div class="flex-shrink-0 flex items-center mr-12 -ml-6">
 
                     <a href="/">
-                        <x-jet-application-mark class="block lg:hidden h-8 w-auto" />
+                        <x-jet-application-mark class="block lg:hidden h-12 w-auto" />
                     </a>
                     <a href="/">
-                        <x-jet-application-mark class="hidden lg:block h-8 w-auto" />
+                        <x-jet-application-mark class="hidden lg:block h-12 w-auto" />
                     </a>
 
                 </div>
 
                 <div class="hidden sm:block ">
-                    <div class="flex space-x-4">
+                    <div class="flex space-x-4 items-center justify-start">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
                         <x-jet-nav-link href="{{ route('/') }}" :active="request()->routeIs('/')">

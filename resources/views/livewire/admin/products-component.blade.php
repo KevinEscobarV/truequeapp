@@ -255,7 +255,7 @@
                                                 alt="">
                                         @else
                                             <img class="h-12 w-12 rounded-md object-cover"
-                                                src="{{ asset('img/default-product.png') }}" alt="">
+                                                src="{{ asset('img/producto.jpg') }}" alt="">
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-500">

@@ -15,6 +15,7 @@ class ProviderFactory extends Factory
             'last_name' => $this->faker->lastName,
             'city' => $this->faker->city,
             'description' => $this->faker->text,
+            'phone' => $this->faker->phoneNumber,
         ];
     }
 }

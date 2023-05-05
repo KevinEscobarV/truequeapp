@@ -63,4 +63,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function getRoleNameAttribute()
+    {
+        $roles = $this->roles->pluck('name')->join(', ');
+        if ($roles == '') {
+            $roles = 'Sin definir';
+        }
+        return $roles;
+    }
 }
